@@ -184,6 +184,10 @@ int EvseRapiProcessor::processCmd()
       g_EvseController.Enable();
       rc = 0;
       break;
+    case 'T': //stop EVSE
+      g_EvseController.Stop();
+      rc = 0;
+      break;      
 #ifdef LCD16X2
     case 'P': // print to LCD
       {
