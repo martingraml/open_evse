@@ -1406,6 +1406,16 @@ void J1772EVSEController::Disable()
   }
 }
 
+void J1772EVSEController::Stop()
+{
+  Sleep();
+  // try to prevent arcing of our relay by waiting for EV to open its contacts first
+  // use the charge start time variable temporarily to count down
+  // when to open the contacts in Update()
+  // car has 3 sec to open contacts after we go to State F
+  m_ChargeOffTimeMS = millis() + 3000;
+{
+
 
 void J1772EVSEController::Sleep()
 {
@@ -1420,11 +1430,6 @@ void J1772EVSEController::Sleep()
 #endif // RAPI
     // cancel state transition so g_OBD doesn't keep updating
     m_PrevEvseState = EVSE_STATE_SLEEPING;
-    // try to prevent arcing of our relay by waiting for EV to open its contacts first
-    // use the charge start time variable temporarily to count down
-    // when to open the contacts in Update()
-    // car has 3 sec to open contacts after we go to State F
-    m_ChargeOffTimeMS = millis() + 3000;
   }
 }
 
