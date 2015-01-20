@@ -67,6 +67,8 @@ FR - reset EVSE
  $FR*BC
 FS - sleep EVSE
  $FS*BD
+FT - soft stop EVSE
+ $FT*??
 
 S0 0|1 - set LCD type
  $S0 0*F7 = monochrome backlight
